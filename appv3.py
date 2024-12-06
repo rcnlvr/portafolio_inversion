@@ -251,6 +251,8 @@ else:
         beta_asset = calcular_beta(returns[selected_asset], returns[benchmark])
         st.metric(f"Beta vs {selected_benchmark}", f"{beta_asset:.2f}")
 
+        result = portafolio_minima_varianza(returns)
+        min_var_weights = result.x
         st.subheader('Pesos del Portafolio de Mínima Varianza')
         for symbol, weight in zip(simbolos, min_var_weights):
             st.write(f"{symbol}: {weight:.4f}")
