@@ -212,9 +212,16 @@ else:
         col2.metric("Sharpe Ratio", f"{calcular_sharpe_ratio(returns[selected_asset]):.2f}")
         col3.metric("Sortino Ratio", f"{calcular_sortino_ratio(returns[selected_asset]):.2f}")
         
-        col4, col5 = st.columns(2)
+        col4, col5, col6 = st.columns(3)
         col4.metric("VaR 95%", f"{var_95:.2%}")
         col5.metric("CVaR 95%", f"{cvar_95:.2%}")
+        col6.metric("Media", f"{calcular_media(returns[selected_asset]):.2f}")
+
+        col7, col8, col9 = st.columns(3)
+         col7.metric("Sesgo", f"{calcular_sesgo(returns[selected_asset]):.2f}")
+         col8.metric("Curtosis", f"{calcular_curtosis(returns[selected_asset]):.2f}")
+         col9.metric("Drawdown", f"{calcular_drawdown(returns[selected_asset]):.2f}")
+
         
         # Gráfico de precio normalizado del activo seleccionado vs benchmark
         fig_asset = go.Figure()
