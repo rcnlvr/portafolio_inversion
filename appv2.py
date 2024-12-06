@@ -326,7 +326,7 @@ else:
         # Gráfico de comparación de rendimientos
         st.plotly_chart(fig_comparison, use_container_width=True, key="returns_comparison")
         
-         with tab3:
-            st.header("Marco Teórico")
-            st.write("""
-            """)
+    with tab3:
+        st.header("Marco Teórico")
+        st.write("""
+        """)
