@@ -67,6 +67,15 @@ def calcular_var_cvar_ventana(returns, window):
     window_returns = returns.iloc[-window:]
     return calcular_var_cvar(window_returns)
 
+def calcular_varianza_portafolio(weights, cov_matrix):
+    return np.dot(weights.T, np.dot(cov_matrix, weights))
+
+def calcular_varianza_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_varianza_portafolio(window_returns)
+
 def crear_histograma_distribucion(returns, var_95, cvar_95, title):
     fig = go.Figure()
     counts, bins = np.histogram(returns, bins=50)
