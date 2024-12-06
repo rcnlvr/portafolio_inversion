@@ -91,6 +91,22 @@ def calcular_drawdown_ventana(returns, window):
     window_returns = returns.iloc[-window:]
     return calcular_drawdown(window_returns)
 
+def calcular_varianza_portafolio(weights, cov_matrix):
+    return np.dot(weights.T, np.dot(cov_matrix, weights))
+
+def portafolio_minima_varianza(returns):
+    cov_matrix = returns.cov()
+    num_assets = len(returns.columns)
+    
+    args = (cov_matrix,)
+    constraints = ({'type': 'eq', 'fun': lambda x: np.sum(x) - 1})
+    bounds = tuple((0, 1) for asset in range(num_assets))
+    
+    result = minimize(calcular_varianza_portafolio, num_assets*[1./num_assets], args=args,
+                      method='SLSQP', bounds=bounds, constraints=constraints)
+    
+    return result
+
 def crear_histograma_distribucion(returns, var_95, cvar_95, title):
     # Crear el histograma base
     fig = go.Figure()
