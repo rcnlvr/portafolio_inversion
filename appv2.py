@@ -283,7 +283,7 @@ else:
     portfolio_cumulative_returns = (1 + portfolio_returns).cumprod() - 1
 
     # Crear pestañas
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Análisis de Activos Individuales", "Análisis del Portafolio", "Portafolio Mínima Varianza", "Portafolio Max Sharpe Ratio","Minima Vol Con 10% Obj"])
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Análisis de Activos Individuales", "Análisis del Portafolio", "Portafolio Mínima Varianza", "Portafolio Max Sharpe Ratio","Minima Vol Con 10% Obj", "Prueba Black"])
 
     etf_summaries = {
         "IEI": {
@@ -725,3 +725,19 @@ with tab5:
     
     except ValueError as e:
         st.error(f"Error en la optimización: {e}")
+
+with tab6:
+    st.title('Cálculo de Riesgo con el Modelo de Black-Litterman')
+    # Datos de ejempl
+    returns = pd.DataFrame({
+    'Asset1': np.random.normal(0.01, 0.02, 100),
+    'Asset2': np.random.normal(0.02, 0.03, 100),
+    'Asset3': np.random.normal(0.015, 0.025, 100)
+})
+
+P = np.array([[1, -1, 0], [0, 1, -1]])
+Q = np.array([0.01, 0.02])
+omega = np.diag([0.0001, 0.0001])
+
+riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
+st.write(f'El riesgo calculado es: {riesgo}')
