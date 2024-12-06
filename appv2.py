@@ -77,7 +77,7 @@ def crear_histograma_distribucion(returns, var_95, cvar_95, title):
         y=counts[~mask_before_var],
         width=np.diff(bins)[~mask_before_var],
         name='Retornos > VaR',
-        marker_color='rgba(31, 119, 180, 0.6)'
+        marker_color='rgba(50, 205, 50, 0.6)'
     ))
     
     # Añadir líneas verticales para VaR y CVaR
@@ -158,7 +158,7 @@ else:
     portfolio_cumulative_returns = (1 + portfolio_returns).cumprod() - 1
 
     # Crear pestañas
-    tab1, tab2 = st.tabs(["Análisis de Activos Individuales", "Análisis del Portafolio"])
+    tab1, tab2, tab3 = st.tabs(["Análisis de Activos Individuales", "Análisis del Portafolio", "Marco Teórico"])
 
     with tab1:
         st.header("Análisis de Activos Individuales")
