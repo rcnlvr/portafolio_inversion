@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
+import scipy.optimize as sco
 from datetime import datetime, timedelta
 
 # Funciones auxiliares
