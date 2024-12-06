@@ -110,7 +110,7 @@ def crear_histograma_distribucion(returns, var_95, cvar_95, title):
         marker_color='rgba(255, 65, 54, 0.6)'
     ))
     
-    # Añadir histograma para valores después del VaR (azul)
+    # Añadir histograma para valores después del VaR (verde)
     fig.add_trace(go.Bar(
         x=bins[:-1][~mask_before_var],
         y=counts[~mask_before_var],
@@ -125,7 +125,7 @@ def crear_histograma_distribucion(returns, var_95, cvar_95, title):
         y=[0, max(counts)],
         mode='lines',
         name='VaR 95%',
-        line=dict(color='green', width=2, dash='dash')
+        line=dict(color='blue', width=2, dash='dash')
     ))
     
     fig.add_trace(go.Scatter(
@@ -133,7 +133,7 @@ def crear_histograma_distribucion(returns, var_95, cvar_95, title):
         y=[0, max(counts)],
         mode='lines',
         name='CVaR 95%',
-        line=dict(color='purple', width=2, dash='dot')
+        line=dict(color='yellow', width=2, dash='dot')
     ))
     
     # Actualizar el diseño
@@ -179,7 +179,8 @@ start_date_options = {
     "1 año": end_date - timedelta(days=365),
     "3 años": end_date - timedelta(days=3*365),
     "5 años": end_date - timedelta(days=5*365),
-    "10 años": end_date - timedelta(days=10*365)
+    "10 años": end_date - timedelta(days=10*365),
+    "2010": end_date - timedelta(days=15*365)
 }
 selected_window = st.sidebar.selectbox("Seleccione la ventana de tiempo para el análisis:", list(start_date_options.keys()))
 start_date = start_date_options[selected_window]
@@ -272,10 +273,16 @@ else:
         col2.metric("Sharpe Ratio del Portafolio", f"{calcular_sharpe_ratio(portfolio_returns):.2f}")
         col3.metric("Sortino Ratio del Portafolio", f"{calcular_sortino_ratio(portfolio_returns):.2f}")
 
-        col4, col5 = st.columns(2)
+        col4, col5, col6 = st.columns(3)
         col4.metric("VaR 95% del Portafolio", f"{portfolio_var_95:.2%}")
         col5.metric("CVaR 95% del Portafolio", f"{portfolio_cvar_95:.2%}")
+        col6.metric("Media", f"{calcular_media(portfolio_returns):.2f}")
 
+        col7, col8, col9 = st.columns(3)
+        col7.metric("Sesgo", f"{calcular_sesgo(portfolio_returns):.2f}")
+        col8.metric("Curtosis", f"{calcular_curtosis(portfolio_returns):.2f}")
+        col9.metric("Drawdown", f"{calcular_drawdown(portfolio_returns):.2f}")
+        
         # Gráfico de rendimientos acumulados del portafolio vs benchmark
         fig_cumulative = go.Figure()
         fig_cumulative.add_trace(go.Scatter(x=portfolio_cumulative_returns.index, y=portfolio_cumulative_returns, name='Portafolio'))
