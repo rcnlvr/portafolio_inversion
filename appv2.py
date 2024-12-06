@@ -67,15 +67,6 @@ def calcular_var_cvar_ventana(returns, window):
     window_returns = returns.iloc[-window:]
     return calcular_var_cvar(window_returns)
 
-def calcular_varianza_portafolio(weights, cov_matrix):
-    return np.dot(weights.T, np.dot(cov_matrix, weights))
-
-def calcular_varianza_ventana(returns, window):
-    if len(returns) < window:
-        return np.nan, np.nan
-    window_returns = returns.iloc[-window:]
-    return calcular_varianza_portafolio(window_returns)
-
 def crear_histograma_distribucion(returns, var_95, cvar_95, title):
     fig = go.Figure()
     counts, bins = np.histogram(returns, bins=50)
@@ -334,13 +325,13 @@ else:
             st.subheader(f"Resumen del ETF: {selected_asset}")
             summary = etf_summaries[selected_asset]
             st.markdown(f"""
-            - **Nombre:** {summary['nombre']}
-            - **Exposición:** {summary['exposicion']}
-            - **Índice que sigue:** {summary['indice']}
-            - **Moneda de denominación:** {summary['moneda']}
-            - **País o región principal:** {summary['pais']}
-            - **Estilo:** {summary['estilo']}
-            - **Costos:** {summary['costos']}
+            - *Nombre:* {summary['nombre']}
+            - *Exposición:* {summary['exposicion']}
+            - *Índice que sigue:* {summary['indice']}
+            - *Moneda de denominación:* {summary['moneda']}
+            - *País o región principal:* {summary['pais']}
+            - *Estilo:* {summary['estilo']}
+            - *Costos:* {summary['costos']}
             """)
 
         # Cálculos métricos
@@ -654,13 +645,13 @@ with tab5:
     st.header("Portafolio de Mínima Volatilidad con Objetivo de Rendimiento (MXN)")
     
     # Definir objetivo de rendimiento anual
-    rendimiento_objetivo_anual = 0.10  # 10%
+    rendimiento_objetivo_anual = 0.08  # 10%
 
     returns_mxnn = calcular_returns_mxn(etfs_permitidos)
     
     try:
         # Calcular los pesos óptimos
-        min_vol_weights_mxn = calcular_minima_volatilidad_objetivo(returns_mxn, rendimiento_objetivo_anual)
+        min_vol_weights_mxn = calcular_minima_volatilidad_objetivo(returns_mxnn, rendimiento_objetivo_anual)
         
         # Calcular métricas del portafolio
         min_vol_returns_mxn = calcular_rendimientos_portafolio(returns_mxnn, min_vol_weights_mxn)
