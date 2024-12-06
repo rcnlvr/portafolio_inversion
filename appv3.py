@@ -253,7 +253,7 @@ else:
 
         st.subheader('Pesos del Portafolio de Mínima Varianza')
         for symbol, weight in zip(simbolos, min_var_weights):
-        st.write(f"{symbol}: {weight:.4f}")
+            st.write(f"{symbol}: {weight:.4f}")
         
         st.subheader(f"Distribución de Retornos: {selected_asset} vs {selected_benchmark}")
         
