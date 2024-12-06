@@ -52,6 +52,45 @@ def calcular_var_cvar_ventana(returns, window):
     window_returns = returns.iloc[-window:]
     return calcular_var_cvar(window_returns)
 
+def calcular_media(returns):
+    return returns.mean()
+
+def calcular_media_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_media(window_returns)
+
+def calcular_sesgo(returns):
+    return returns.skew()
+
+def calcular_sesgo_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_sesgo(window_returns)
+
+def calcular_curtosis(returns):
+    return returns.kurtosis()
+
+def calcular_curtosis_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_curtosis(window_returns)
+
+def calcular_drawdown(returns):
+    cumulative_returns = (1 + returns).cumprod()
+    peak = cumulative_returns.cummax()
+    drawdown = (cumulative_returns - peak) / peak
+    return drawdown.min()
+
+def calcular_drawdown_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_drawdown(window_returns)
+
 def crear_histograma_distribucion(returns, var_95, cvar_95, title):
     # Crear el histograma base
     fig = go.Figure()
