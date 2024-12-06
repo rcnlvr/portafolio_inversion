@@ -218,9 +218,9 @@ else:
         col6.metric("Media", f"{calcular_media(returns[selected_asset]):.2f}")
 
         col7, col8, col9 = st.columns(3)
-         col7.metric("Sesgo", f"{calcular_sesgo(returns[selected_asset]):.2f}")
-         col8.metric("Curtosis", f"{calcular_curtosis(returns[selected_asset]):.2f}")
-         col9.metric("Drawdown", f"{calcular_drawdown(returns[selected_asset]):.2f}")
+        col7.metric("Sesgo", f"{calcular_sesgo(returns[selected_asset]):.2f}")
+        col8.metric("Curtosis", f"{calcular_curtosis(returns[selected_asset]):.2f}")
+        col9.metric("Drawdown", f"{calcular_drawdown(returns[selected_asset]):.2f}")
 
         
         # Gráfico de precio normalizado del activo seleccionado vs benchmark
