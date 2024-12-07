@@ -690,7 +690,7 @@ with tab5:
     
 
 with tab6:
-    st.title('Cálculo de Riesgo con el Modelo de Black-Litterman')
+    st.title('Optimización con el Modelo de Black-Litterman')
     # Datos de ejemplo
     #returns = pd.DataFrame(portfolio_returns, columns=['Portfolio Returns'])
 
