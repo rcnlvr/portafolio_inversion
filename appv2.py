@@ -691,9 +691,7 @@ with tab5:
 
 with tab6:
     st.title('Optimización con el Modelo de Black-Litterman')
-    # Datos de ejemplo
-    returns #= pd.DataFrame(portfolio_returns, columns=['Portfolio Returns'])
-
+    returns = returns[simbolos]
     P = np.array([[1, -1, 0], [0, 1, -1]])
     Q = np.array([0.01, 0.02])
     omega = np.diag([0.0001, 0.0001])
