@@ -868,7 +868,7 @@ with tab7:
     Con un VaR de -1.24% vemos que las pérdidas que suele tener este etf no son muy grandes, lo cual nos conviene.
     También tiene un Drawdown muy bajo, de -9.37% lo que lo hace atractivo al ver que no tarda mucho en recuperar sus pérdidas. En este caso es un buen resguardo para equilibrar las rentas variables que tenemos.
     
-           """)
+    """)
     
     returns = cumulative_returns
     col1 = st.columns(1)
