@@ -32,6 +32,10 @@ def obtener_datos_acciones(simbolos, start_date, end_date):
     data = yf.download(simbolos, start=start_date, end=end_date)['Close']
     return data.ffill().dropna()
 
+def calcular_rendimientos_diarios(df):
+    returns = df.pct_change().dropna()
+    return returns
+
 def calcular_metricas(df):
     returns = df.pct_change().dropna()
     cumulative_returns = (1 + returns).cumprod() - 1
@@ -728,6 +732,8 @@ with tab5:
 
 with tab6:
     st.title('Cálculo de Riesgo con el Modelo de Black-Litterman')
+
+    
     # Datos de ejempl
     returns = pd.DataFrame({
     'Asset1': np.random.normal(0.01, 0.02, 100),
