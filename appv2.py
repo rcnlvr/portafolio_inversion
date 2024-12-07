@@ -524,12 +524,7 @@ with tab3:
     # Mostrar métricas clave
     col1, col2, col3 = st.columns(3)
     col1.metric("Riesgo (Desviación Estándar Anualizada)", f"{min_var_risk:.2%}")
-    col2.metric("Rendimiento Esperado Anualizado", f"{min_var_mean_return:.2%}")
-    col3.metric("Rendimiento Acumulado", f"{min_var_cumulative:.2%}")
-
-
-
-    
+    col2.metric("Rendimiento Esperado Anualizado", f"{min_var_mean_return:.2%}")    
     
     # Comparar rendimientos acumulados
     fig_cumulative = go.Figure()
