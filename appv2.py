@@ -565,6 +565,7 @@ with tab3:
     min_var_risk = np.sqrt(252) * min_var_returns.std()
     min_var_mean_return = min_var_returns.mean() * 252  # Anualizado
     
+    
     st.subheader("Pesos del Portafolio de Mínima Varianza")
     weights_df = pd.DataFrame({
         "ETF": simbolos,
@@ -573,10 +574,11 @@ with tab3:
     st.dataframe(weights_df.style.format({"Peso Óptimo": "{:.2%}"}))
     
     # Mostrar métricas clave (rendimient anual, acumulado, sesgo, curtosis, var, cvar, sharp sortino, drawdown
-    col1, col2, col3 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     col1.metric("Riesgo (Desviación Estándar Anualizada)", f"{min_var_risk:.2%}")
-    col2.metric("Rendimiento Esperado Anualizado", f"{min_var_mean_return:.2%}"
-    col3.metric("Rendimiento acumulado", f"{min_var_cumulative:.2%}"
+    col2.metric("Rendimiento Esperado Anualizado", f"{min_var_mean_return:.2%}")
+    col3.metric("Rendimiento acumulado", f"{min_var_cumulative:.2%}")
+    
     
     
     # Comparar rendimientos acumulados
