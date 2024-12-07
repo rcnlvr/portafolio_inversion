@@ -725,7 +725,7 @@ with tab6:
     """)
     
     cumulative_returns
-        col1 = st.columns(1)
+    col1 = st.columns(1)
     st.subheader("Rendimientos optimizados")
     st.dataframe(rendimientos_ventanas.style.format("{:.2%}"))
     P = np.array([[1, -1, 0], [0, 1, -1]])
