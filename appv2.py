@@ -241,7 +241,6 @@ def calcular_riesgo_black_litterman(returns, P, Q, omega, tau=0.05):
     
     return riesgo
 
-
 # ETFs permitidos y datos
 etfs_permitidos = ["IEI", "EMB", "SPY", "IEMG", "GLD"]
 start_date = "2010-01-01"
@@ -283,7 +282,7 @@ else:
     portfolio_cumulative_returns = (1 + portfolio_returns).cumprod() - 1
 
     # Crear pestañas
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Análisis de Activos Individuales", "Análisis del Portafolio", "Portafolio Mínima Varianza", "Portafolio Max Sharpe Ratio","Minima Vol Con 10% Obj", "Prueba Black"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Análisis de Activos Individuales", "Análisis del Portafolio", "Portafolio Mínima Varianza", "Portafolio Max Sharpe Ratio","Minima Vol Con 10% Obj"])
 
     etf_summaries = {
         "IEI": {
@@ -344,13 +343,13 @@ else:
             st.subheader(f"Resumen del ETF: {selected_asset}")
             summary = etf_summaries[selected_asset]
             st.markdown(f"""
-            - Nombre: {summary['nombre']}
-            - Exposición: {summary['exposicion']}
-            - Índice que sigue: {summary['indice']}
-            - Moneda de denominación: {summary['moneda']}
-            - País o región principal: {summary['pais']}
-            - Estilo: {summary['estilo']}
-            - Costos: {summary['costos']}
+            - **Nombre:** {summary['nombre']}
+            - **Exposición:** {summary['exposicion']}
+            - **Índice que sigue:** {summary['indice']}
+            - **Moneda de denominación:** {summary['moneda']}
+            - **País o región principal:** {summary['pais']}
+            - **Estilo:** {summary['estilo']}
+            - **Costos:** {summary['costos']}
             """)
 
         # Cálculos métricos
@@ -664,13 +663,13 @@ with tab5:
     st.header("Portafolio de Mínima Volatilidad con Objetivo de Rendimiento (MXN)")
     
     # Definir objetivo de rendimiento anual
-    rendimiento_objetivo_anual = 0.08  # 10%
+    rendimiento_objetivo_anual = 0.10  # 10%
 
     returns_mxnn = calcular_returns_mxn(etfs_permitidos)
     
     try:
         # Calcular los pesos óptimos
-        min_vol_weights_mxn = calcular_minima_volatilidad_objetivo(returns_mxnn, rendimiento_objetivo_anual)
+        min_vol_weights_mxn = calcular_minima_volatilidad_objetivo(returns_mxn, rendimiento_objetivo_anual)
         
         # Calcular métricas del portafolio
         min_vol_returns_mxn = calcular_rendimientos_portafolio(returns_mxnn, min_vol_weights_mxn)
@@ -726,6 +725,7 @@ with tab5:
     except ValueError as e:
         st.error(f"Error en la optimización: {e}")
 
+
 with tab6:
     st.title('Cálculo de Riesgo con el Modelo de Black-Litterman')
     # Datos de ejempl
@@ -733,11 +733,11 @@ with tab6:
     'Asset1': np.random.normal(0.01, 0.02, 100),
     'Asset2': np.random.normal(0.02, 0.03, 100),
     'Asset3': np.random.normal(0.015, 0.025, 100)
-})
-
-P = np.array([[1, -1, 0], [0, 1, -1]])
-Q = np.array([0.01, 0.02])
-omega = np.diag([0.0001, 0.0001])
-
-riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
-st.write(f'El riesgo calculado es: {riesgo}')
+    })
+    
+    P = np.array([[1, -1, 0], [0, 1, -1]])
+    Q = np.array([0.01, 0.02])
+    omega = np.diag([0.0001, 0.0001])
+    
+    riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
+    st.write(f'El riesgo calculado es: {riesgo}')
