@@ -691,15 +691,16 @@ with tab5:
 
 with tab6:
     st.title('Cálculo de Riesgo con el Modelo de Black-Litterman')
-    # Datos de ejempl
-    if 'returns' in locals():
-        # Definir las matrices P, Q y omega según tus opiniones
-        P = np.array([[1, -1, 0], [0, 1, -1]])
-        Q = np.array([0.01, 0.02])
-        omega = np.diag([0.0001, 0.0001])
-        
-        # Calcular el riesgo ajustado con el modelo de Black-Litterman
-        riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
-        st.write(f'El riesgo calculado es: {riesgo}')
-    else:
-        st.write("La variable 'returns' no está definida. Asegúrate de calcular los rendimientos antes de esta sección.")
+    # Datos de ejemplo
+    returns = pd.DataFrame({
+    'Asset1': np.random.normal(0.01, 0.02, 100),
+    'Asset2': np.random.normal(0.02, 0.03, 100),
+    'Asset3': np.random.normal(0.015, 0.025, 100)
+    })
+
+    P = np.array([[1, -1, 0], [0, 1, -1]])
+    Q = np.array([0.01, 0.02])
+    omega = np.diag([0.0001, 0.0001])
+    
+    riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
+    st.write(f'El riesgo calculado es: {riesgo}')
