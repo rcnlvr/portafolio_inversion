@@ -688,7 +688,21 @@ with tab5:
 
 with tab6:
     st.title('Optimización con el Modelo de Black-Litterman')
-    returns
+    st.write("""
+    Para este proyecto, elegimos el siguiente portafolio: IEI, EMB, SPY, IEMG, GLD.
+    Con base en el modelo de Black-Litterman, podemos decir lo siguiente:
+
+    IEI: 
+
+    EMB:
+
+    SPY:
+
+    IEMG:
+
+    GLD:
+    """)
+    cumulative_returns
     P = np.array([[1, -1, 0], [0, 1, -1]])
     Q = np.array([0.01, 0.02])
     omega = np.diag([0.0001, 0.0001])
