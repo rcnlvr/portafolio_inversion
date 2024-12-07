@@ -687,18 +687,10 @@ with tab5:
     
 
 with tab6:
-    st.title('Optimización con el Modelo de Black-Litterman')
-    returns = pd.DataFrame(cumulative_returns[simbolos])
-
-    # Calcular los rendimientos anualizados
-    annualized_returns = returns[simbolos].mean() * 252
-    df_returns = pd.DataFrame(annualized_returns, columns=['Rendimiento Anualizado'])
-    
+    st.title('Optimización con el Modelo de Black-Litterman')    
     P = np.array([[1, -1, 0], [0, 1, -1]])
     Q = np.array([0.01, 0.02])
     omega = np.diag([0.0001, 0.0001])
     
     riesgo = calcular_riesgo_black_litterman(df_returns, P, Q, omega)
     st.write(f'El riesgo ajustado calculado con el modelo Black-Litterman es: {riesgo}')
-
-
