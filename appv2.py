@@ -734,7 +734,8 @@ with tab6:
     st.title('Cálculo de Riesgo con el Modelo de Black-Litterman')
 
     
-    # Datos de ejempl
+    # Datos de ejemplo
+    returns = calcular_rendimientos_diarios(df)
     #returns = pd.DataFrame({
     #'Asset1': np.random.normal(0.01, 0.02, 100),
     #'Asset2': np.random.normal(0.02, 0.03, 100),
