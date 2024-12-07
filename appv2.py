@@ -724,7 +724,7 @@ with tab6:
     
     """)
     
-    cumulative_returns
+    returns = cumulative_returns
     col1 = st.columns(1)
     st.subheader("Rendimientos optimizados")
     st.dataframe(rendimientos_ventanas.style.format("{:.2%}"))
@@ -732,5 +732,5 @@ with tab6:
     Q = np.array([0.01, 0.02])
     omega = np.diag([0.0001, 0.0001])
     
-    riesgo = calcular_riesgo_black_litterman(cumulative_returns, P, Q, omega)
+    riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
     st.write(f'El riesgo ajustado calculado con el modelo Black-Litterman es: {riesgo}')
