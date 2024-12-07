@@ -222,7 +222,7 @@ def calcular_returns_mxn(etfs, start_date="2010-01-01", end_date="2020-12-31"):
 
     return returns_mxn
 
-def calcular_riesgo_black_litterman(returns, P, Q, omega, tau=0.05):
+def calcular_riesgo_black_litterman(returns, P, Q, omega):
     # Cálculo de la matriz de covarianza
     cov_matrix = returns.cov()
     
@@ -230,7 +230,7 @@ def calcular_riesgo_black_litterman(returns, P, Q, omega, tau=0.05):
     pi = np.dot(cov_matrix, np.mean(returns, axis=0))
     
     # Ajuste de los rendimientos esperados con las opiniones del inversor
-    M_inverse = np.linalg.inv(np.dot(tau, cov_matrix))
+    M_inverse = np.linalg.inv(np.dot(tau=0.05, cov_matrix))
     omega_inverse = np.linalg.inv(omega)
     adjusted_returns = np.dot(np.linalg.inv(M_inverse + np.dot(P.T, np.dot(omega_inverse, P))), 
                               np.dot(M_inverse, pi) + np.dot(P.T, np.dot(omega_inverse, Q)))
