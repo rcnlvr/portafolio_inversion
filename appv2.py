@@ -835,6 +835,7 @@ with tab6:
 with tab7:
         st.title('Optimización con el Modelo de Black-Litterman')
     st.write("""
+    
     Para este proyecto, elegimos el siguiente portafolio: IEI, EMB, SPY, IEMG, GLD.
     Con base en el modelo de Black-Litterman, podemos decir lo siguiente:
 
@@ -866,6 +867,7 @@ with tab7:
     Su último rendimiento anual fue de 33.10% lo que nos deja un buen sabor de boca. Generalmente usado como activo de resguardo, este etf nos permitirá tener liquidez "segura" en nuestro portafolio.
     Con un VaR de -1.24% vemos que las pérdidas que suele tener este etf no son muy grandes, lo cual nos conviene.
     También tiene un Drawdown muy bajo, de -9.37% lo que lo hace atractivo al ver que no tarda mucho en recuperar sus pérdidas. En este caso es un buen resguardo para equilibrar las rentas variables que tenemos.
+    
     """)
     
     returns = cumulative_returns
