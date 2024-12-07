@@ -398,12 +398,12 @@ else:
         col4, col5, col6 = st.columns(3)
         col4.metric("VaR 95% del Portafolio", f"{portfolio_var_95:.2%}")
         col5.metric("CVaR 95% del Portafolio", f"{portfolio_cvar_95:.2%}")
-        col6.metric("Media retornos", f"{portfolio_returns.mean():.2%}")
+        col6.metric("Media retornos", f"{portfolio_returns.mean():.2f}")
         
         col7, col8, col9 = st.columns(3)
-        col7.metric("VaR 95% del Portafolio", f"{calcular_sesgo(portfolio_returns):.2%}")
-        col8.metric("CVaR 95% del Portafolio", f"{calcular_exceso_curtosis(portfolio_returns):.2%}")
-        col9.metric("Media retornos", f"{calcular_ultimo_drawdown(portfolio_returns):.2%}")
+        col7.metric("Sesgo del Portafolio", f"{calcular_sesgo(portfolio_returns):.2f}")
+        col8.metric("Exceso de Curtosis Portafolio", f"{calcular_exceso_curtosis(portfolio_returns):.2f}")
+        col9.metric("Drawdown", f"{calcular_ultimo_drawdown(portfolio_returns):.2%}")
 
         # Gráfico de rendimientos acumulados del portafolio vs benchmark
         fig_cumulative = go.Figure()
@@ -522,9 +522,14 @@ with tab3:
     st.dataframe(weights_df.style.format({"Peso Óptimo": "{:.2%}"}))
     
     # Mostrar métricas clave
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     col1.metric("Riesgo (Desviación Estándar Anualizada)", f"{min_var_risk:.2%}")
     col2.metric("Rendimiento Esperado Anualizado", f"{min_var_mean_return:.2%}")
+    col3.metric("Rendimiento Acumulado", f"{min_var_cumulative:.2%}")
+
+
+
+    
     
     # Comparar rendimientos acumulados
     fig_cumulative = go.Figure()
