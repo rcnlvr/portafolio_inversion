@@ -692,17 +692,41 @@ with tab6:
     Para este proyecto, elegimos el siguiente portafolio: IEI, EMB, SPY, IEMG, GLD.
     Con base en el modelo de Black-Litterman, podemos decir lo siguiente:
 
-    IEI: 
+    IEI:
+    
+    Tiene un rendimiento anual esperado de 0.74% y un VaR de -0.48%, lo que nos dice que es un activo estable para nuestro portafolio.
+    El Drawdown es algo bajo, -152.75%, esto nos dice que en caso de ir bajando el activo, va a tardar en volver a repuntar.
+    Por último, al ser un activo de renta fija desarrolladanos, nos asegura que la acción no perderá su valor por completo, eso nos da seguridad de inversion.    
 
     EMB:
 
-    SPY:
+    Tiene un rendimiento anual esperado de 8.42% lo que suena bastante bien junto al VaR de -0.85%.
+    Sin embargo, al ser un etf de renta fija emergente tiende a ser más volátil dependiendo de la situación de los países que involucra (México, Brasil, etc)
+    Este etf nos puede dejar un buen rendimiento y con poco riesgo de pérdida, sin embargo, puede que se estanque en un porcentaje por el mismo tema de los países emergentes.
 
+    SPY:
+    
+    Con un rendimiento anual de 41.64% y un VaR de -1.35, este etf se ve actractivo para diversificar y entrar en la renta variable desarrollada.
+    Al ser una réplica de nuestro benchmark, este etf nos ayuda a mantenernos cerca de esta meta, sin ambargo, por ser renta variable no podemos confiar en que siempre genera tanto.
+    Además, el último Drawdown fue bajo, de -0.71% por lo que podemos ver que este activo no tarda mucho en repuntar y sus pérdidas no son tan grandes cuando baja de su máximo.
+    
     IEMG:
 
+    Con un rendimiento anual de 11.49% y un VaR de -1.44% este etf de renta fija emergente nos permite estar diversificados, al estar enfocado en empresas de mediana y alta capitalización, significa que no pierden completamente, pues estas son las empresas que más se mantienen en estos países.
+    Su Drawdown es de -88.89%, esto nos indica que es un etf que suele tener pérdidas y que, aunque no son muy altas, si tarda un poco en recuperarse.
+        
     GLD:
+    
+    Su último rendimiento anual fue de 33.10% lo que nos deja un buen sabor de boca. Generalmente usado como activo de resguardo, este etf nos permitirá tener liquidez "segura" en nuestro portafolio.
+    Con un VaR de -1.24% vemos que las pérdidas que suele tener este etf no son muy grandes, lo cual nos conviene.
+    También tiene un Drawdown muy bajo, de -9.37% lo que lo hace atractivo al ver que no tarda mucho en recuperar sus pérdidas. En este caso es un buen resguardo para equilibrar las rentas variables que tenemos.
+
+    
     """)
     cumulative_returns
+    col1 = st.columns(1)
+    col1.subheader("Rendimientos optimizados")
+    col1.dataframe(rendimientos_ventanas.style.format("{:.2%}"))
     P = np.array([[1, -1, 0], [0, 1, -1]])
     Q = np.array([0.01, 0.02])
     omega = np.diag([0.0001, 0.0001])
