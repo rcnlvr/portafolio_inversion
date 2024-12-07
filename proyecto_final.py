@@ -240,6 +240,9 @@ benchmark_options = {
 selected_benchmark = st.sidebar.selectbox("Seleccione el benchmark:", list(benchmark_options.keys()))
 benchmark = benchmark_options[selected_benchmark]
 
+st.markdown("<div style='font-size:14px; color:#888; text-align:center; margin-top:20px;'>Autores: <b>Gustavo López López</b> y <b>Ismael Omar Jiménez González</b></div>", unsafe_allow_html=True)
+
+
 if len(simbolos) != len(pesos) or abs(sum(pesos) - 1) > 1e-6:
     st.sidebar.error("El número de símbolos debe coincidir con el número de pesos, y los pesos deben sumar 1.")
 else:
@@ -833,35 +836,100 @@ with tab6:
     
 
 with tab7:
-    st.title('Optimización con el Modelo de Black-Litterman')
-    st.write("""
-    Para este proyecto, elegimos el siguiente portafolio: IEI, EMB, SPY, IEMG, GLD.
-    Con base en el modelo de Black-Litterman, podemos decir lo siguiente:
+    st.markdown("""
+        <style>
+            .title {
+                font-size: 24px;
+                font-weight: bold;
+                color: #4CAF50;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .subtitle {
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+                margin-top: 15px;
+            }
+            .paragraph {
+                font-size: 16px;
+                color: #555;
+                text-align: justify;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+            .highlight {
+                font-size: 16px;
+                color: #FF5722;
+                font-weight: bold;
+            }
+            ul {
+                color: #555;
+                font-size: 16px;
+                line-height: 1.6;
+                margin-left: 20px;
+            }
+            li {
+                margin-bottom: 10px;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
-    **IEI**:
-    - Tiene un rendimiento anual esperado de 0.74% y un VaR de -0.48%, lo que nos dice que es un activo estable para nuestro portafolio.
-    - El Drawdown es algo bajo, -152.75%, esto nos dice que en caso de ir bajando el activo, va a tardar en volver a repuntar.
-    - Por último, al ser un activo de renta fija desarrollada, nos asegura que la acción no perderá su valor por completo, eso nos da seguridad de inversión.
-
-    **EMB**:
-    - Tiene un rendimiento anual esperado de 8.42% lo que suena bastante bien junto al VaR de -0.85%.
-    - Sin embargo, al ser un ETF de renta fija emergente tiende a ser más volátil dependiendo de la situación de los países que involucra (México, Brasil, etc).
-    - Este ETF nos puede dejar un buen rendimiento y con poco riesgo de pérdida, sin embargo, puede que se estanque en un porcentaje por el mismo tema de los países emergentes.
-
-    **SPY**:
-    - Con un rendimiento anual de 41.64% y un VaR de -1.35%, este ETF se ve atractivo para diversificar y entrar en la renta variable desarrollada.
-    - Al ser una réplica de nuestro benchmark, este ETF nos ayuda a mantenernos cerca de esta meta, sin embargo, por ser renta variable no podemos confiar en que siempre genera tanto.
-    - Además, el último Drawdown fue bajo, de -0.71% por lo que podemos ver que este activo no tarda mucho en repuntar y sus pérdidas no son tan grandes cuando baja de su máximo.
-
-    **IEMG**:
-    - Con un rendimiento anual de 11.49% y un VaR de -1.44%, este ETF de renta fija emergente nos permite estar diversificados, al estar enfocado en empresas de mediana y alta capitalización, significa que no pierden completamente, pues estas son las empresas que más se mantienen en estos países.
-    - Su Drawdown es de -88.89%, esto nos indica que es un ETF que suele tener pérdidas y que, aunque no son muy altas, si tarda un poco en recuperarse.
-
-    **GLD**:
-    - Su último rendimiento anual fue de 33.10% lo que nos deja un buen sabor de boca. Generalmente usado como activo de resguardo, este ETF nos permitirá tener liquidez "segura" en nuestro portafolio.
-    - Con un VaR de -1.24% vemos que las pérdidas que suele tener este ETF no son muy grandes, lo cual nos conviene.
-    - También tiene un Drawdown muy bajo, de -9.37% lo que lo hace atractivo al ver que no tarda mucho en recuperar sus pérdidas. En este caso es un buen resguardo para equilibrar las rentas variables que tenemos.
-    """)
+    # Título principal
+    st.markdown("<div class='title'>Análisis del Portafolio Seleccionado</div>", unsafe_allow_html=True)
+    
+    # Introducción
+    st.markdown("<div class='paragraph'>Para este proyecto, elegimos el siguiente portafolio: <span class='highlight'>IEI, EMB, SPY, IEMG, GLD</span>. Con base en el modelo de Black-Litterman, podemos decir lo siguiente:</div>", unsafe_allow_html=True)
+    
+    # IEI
+    st.markdown("<div class='subtitle'>IEI</div>", unsafe_allow_html=True)
+    st.markdown("""
+    <ul>
+        <li>Tiene un rendimiento anual esperado de <span class='highlight'>0.74%</span> y un VaR de <span class='highlight'>-0.48%</span>, lo que nos dice que es un activo estable para nuestro portafolio.</li>
+        <li>El Drawdown es algo bajo (<span class='highlight'>-152.75%</span>), lo que indica que, en caso de ir bajando, tardará en repuntar.</li>
+        <li>Por último, al ser un activo de renta fija desarrollada, asegura que la acción no perderá su valor por completo, brindando seguridad en la inversión.</li>
+    </ul>
+    """, unsafe_allow_html=True)
+    
+    # EMB
+    st.markdown("<div class='subtitle'>EMB</div>", unsafe_allow_html=True)
+    st.markdown("""
+    <ul>
+        <li>Tiene un rendimiento anual esperado de <span class='highlight'>8.42%</span> y un VaR de <span class='highlight'>-0.85%</span>.</li>
+        <li>Sin embargo, al ser un ETF de renta fija emergente, tiende a ser más volátil dependiendo de la situación de los países involucrados (México, Brasil, etc.).</li>
+        <li>Este ETF puede ofrecer un buen rendimiento con poco riesgo de pérdida, aunque puede estancarse debido a las condiciones económicas de los países emergentes.</li>
+    </ul>
+    """, unsafe_allow_html=True)
+    
+    # SPY
+    st.markdown("<div class='subtitle'>SPY</div>", unsafe_allow_html=True)
+    st.markdown("""
+    <ul>
+        <li>Con un rendimiento anual de <span class='highlight'>41.64%</span> y un VaR de <span class='highlight'>-1.35%</span>, este ETF se ve atractivo para diversificar hacia la renta variable desarrollada.</li>
+        <li>Al ser una réplica de nuestro benchmark, ayuda a mantenernos cerca de esta meta. Sin embargo, como renta variable, no se puede garantizar un rendimiento constante.</li>
+        <li>Su último Drawdown fue bajo (<span class='highlight'>-0.71%</span>), mostrando que se recupera rápidamente y las pérdidas no suelen ser significativas.</li>
+    </ul>
+    """, unsafe_allow_html=True)
+    
+    # IEMG
+    st.markdown("<div class='subtitle'>IEMG</div>", unsafe_allow_html=True)
+    st.markdown("""
+    <ul>
+        <li>Con un rendimiento anual de <span class='highlight'>11.49%</span> y un VaR de <span class='highlight'>-1.44%</span>, este ETF de renta fija emergente permite diversificación.</li>
+        <li>Enfocado en empresas de mediana y alta capitalización, sugiere menor riesgo de pérdidas completas, ya que estas empresas suelen mantenerse estables en países emergentes.</li>
+        <li>Su Drawdown de <span class='highlight'>-88.89%</span> indica que, aunque las pérdidas no son muy altas, tarda en recuperarse.</li>
+    </ul>
+    """, unsafe_allow_html=True)
+    
+    # GLD
+    st.markdown("<div class='subtitle'>GLD</div>", unsafe_allow_html=True)
+    st.markdown("""
+    <ul>
+        <li>Con un rendimiento anual de <span class='highlight'>33.10%</span>, este ETF es un activo de resguardo que ofrece liquidez segura en el portafolio.</li>
+        <li>Su VaR de <span class='highlight'>-1.24%</span> indica que las pérdidas suelen ser limitadas.</li>
+        <li>Su Drawdown bajo (<span class='highlight'>-9.37%</span>) lo hace atractivo, mostrando que recupera rápidamente sus pérdidas. Es ideal para equilibrar las rentas variables del portafolio.</li>
+    </ul>
+    """, unsafe_allow_html=True)
     
     returns = cumulative_returns
     col1 = st.columns(1)
