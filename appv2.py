@@ -16,11 +16,23 @@ def calcular_rendimiento_ventana(returns, window):
         return np.nan
     return (1 + returns.iloc[-window:]).prod() - 1
 
-def calcular_sesgo(df):
+def calcular_sesgo(returns):
     return returns.skew()
+
+def calcular_sesgo_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_sesgo(window_returns)
 
 def calcular_exceso_curtosis(returns):
     return returns.kurtosis()
+
+def calcular_curtosis_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_exceso_curtosis(window_returns)
 
 def calcular_ultimo_drawdown(series):
     peak = series.expanding(min_periods=1).max()
@@ -28,6 +40,12 @@ def calcular_ultimo_drawdown(series):
     ultimo_drawdown = drawdown.iloc[-1]
     return ultimo_drawdown
 
+def calcular_drawdown_ventana(returns, window):
+    if len(returns) < window:
+        return np.nan, np.nan
+    window_returns = returns.iloc[-window:]
+    return calcular_ultimo_drawdown(window_returns)
+    
 def obtener_datos_acciones(simbolos, start_date, end_date):
     data = yf.download(simbolos, start=start_date, end=end_date)['Close']
     return data.ffill().dropna()
