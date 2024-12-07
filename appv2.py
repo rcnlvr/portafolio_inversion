@@ -735,7 +735,7 @@ with tab6:
 
     
     # Datos de ejemplo
-    returns = calcular_rendimientos_diarios(df)
+    returns = calcular_rendimientos_diarios(returns)
     #returns = pd.DataFrame({
     #'Asset1': np.random.normal(0.01, 0.02, 100),
     #'Asset2': np.random.normal(0.02, 0.03, 100),
