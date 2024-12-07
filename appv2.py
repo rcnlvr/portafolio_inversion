@@ -17,7 +17,7 @@ def calcular_rendimiento_ventana(returns, window):
     return (1 + returns.iloc[-window:]).prod() - 1
 
 def calcular_sesgo(df):
-    return df.skew()
+    return returns.skew()
 
 def calcular_exceso_curtosis(returns):
     return returns.kurtosis()
@@ -435,7 +435,7 @@ else:
         col7, col8, col9 = st.columns(3)
         col7.metric("Sesgo Portafolio", f"{calcular_sesgo(portfolio_returns):.2f}")
         col8.metric("Exceso de Curtosis Portafolio", f"{calcular_exceso_curtosis(portfolio_returns):.2f}")
-        col9.metric("Último Drawdown Portafolio", f"{calcular_ultimo_drawdown(portfolio_returns):.2f}")
+        col9.metric("Último Drawdown Portafolio", f"{calcular_ultimo_drawdown(portfolio_returns):.2%}")
 
         # Gráfico de rendimientos acumulados del portafolio vs benchmark
         fig_cumulative = go.Figure()
