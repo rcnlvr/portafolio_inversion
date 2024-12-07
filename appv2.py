@@ -413,10 +413,6 @@ else:
                 f'Distribución de Retornos - {selected_benchmark}'
             )
             st.plotly_chart(fig_hist_bench, use_container_width=True, key="hist_bench_1")
-           
-
-
-        
         
 
     
@@ -431,9 +427,15 @@ else:
         col2.metric("Sharpe Ratio del Portafolio", f"{calcular_sharpe_ratio(portfolio_returns):.2f}")
         col3.metric("Sortino Ratio del Portafolio", f"{calcular_sortino_ratio(portfolio_returns):.2f}")
 
-        col4, col5 = st.columns(2)
+        col4, col5, col6 = st.columns(3)
         col4.metric("VaR 95% del Portafolio", f"{portfolio_var_95:.2%}")
         col5.metric("CVaR 95% del Portafolio", f"{portfolio_cvar_95:.2%}")
+        col6.metric("Media Retornos Portafolio", f"{portfolio_returns.mean():.2%}")
+
+        col7, col8, col9 = st.columns(3)
+        col7.metric("Sesgo Portafolio", f"{calcular_sesgo(portfolio_returns):.2f}")
+        col8.metric("Exceso de Curtosis Portafolio", f"{calcular_exceso_curtosis(portfolio_returns):.2f}")
+        col9.metric("Último Drawdown Portafolio", f"{calcular_ultimo_drawdown(portfolio_returns):.2f}")
 
         # Gráfico de rendimientos acumulados del portafolio vs benchmark
         fig_cumulative = go.Figure()
