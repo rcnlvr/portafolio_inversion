@@ -699,4 +699,3 @@ with tab6:
     omega = np.diag([0.0001, 0.0001])
     
     riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
-    st.write(f'El riesgo calculado es: {riesgo}')
