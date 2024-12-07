@@ -398,7 +398,12 @@ else:
         col4, col5, col6 = st.columns(3)
         col4.metric("VaR 95% del Portafolio", f"{portfolio_var_95:.2%}")
         col5.metric("CVaR 95% del Portafolio", f"{portfolio_cvar_95:.2%}")
-        col5.metric("Media retornos", f"{portfolio_returns.mean():.2%}")
+        col6.metric("Media retornos", f"{portfolio_returns.mean():.2%}")
+        
+        col7, col8, col9 = st.columns(3)
+        col7.metric("VaR 95% del Portafolio", f"{calcular_sesgo(portfolio_returns):.2%}")
+        col8.metric("CVaR 95% del Portafolio", f"{calcular_exceso_curtosis(portfolio_returns):.2%}")
+        col9.metric("Media retornos", f"{calcular_ultimo_drawdown(portfolio_returns):.2%}")
 
         # Gráfico de rendimientos acumulados del portafolio vs benchmark
         fig_cumulative = go.Figure()
