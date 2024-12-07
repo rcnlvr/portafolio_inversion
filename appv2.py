@@ -445,15 +445,15 @@ else:
         col2.metric("Sharpe Ratio del Portafolio", f"{calcular_sharpe_ratio(portfolio_returns):.2f}")
         col3.metric("Sortino Ratio del Portafolio", f"{calcular_sortino_ratio(portfolio_returns):.2f}")
 
-        col4, col5, col6 = st.columns(3)
-        col4.metric("VaR 95% del Portafolio", f"{portfolio_var_95:.2%}")
-        col5.metric("CVaR 95% del Portafolio", f"{portfolio_cvar_95:.2%}")
-        col6.metric("Media Retornos Portafolio", f"{portfolio_returns.mean():.2%}")
+        col1, col2, col3 = st.columns(3)
+        col1.metric("VaR 95% del Portafolio", f"{portfolio_var_95:.2%}")
+        col2.metric("CVaR 95% del Portafolio", f"{portfolio_cvar_95:.2%}")
+        col3.metric("Media Retornos Portafolio", f"{portfolio_returns.mean():.2%}")
 
-        col7, col8, col9 = st.columns(3)
-        col7.metric("Sesgo Portafolio", f"{calcular_sesgo(portfolio_returns):.2f}")
-        col8.metric("Exceso de Curtosis Portafolio", f"{calcular_exceso_curtosis(portfolio_returns):.2f}")
-        col9.metric("Último Drawdown Portafolio", f"{calcular_ultimo_drawdown(portfolio_returns):.2%}")
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Sesgo Portafolio", f"{calcular_sesgo(portfolio_returns):.2f}")
+        col2.metric("Exceso de Curtosis Portafolio", f"{calcular_exceso_curtosis(portfolio_returns):.2f}")
+        col3.metric("Último Drawdown Portafolio", f"{calcular_ultimo_drawdown(portfolio_returns):.2%}")
 
         # Gráfico de rendimientos acumulados del portafolio vs benchmark
         fig_cumulative = go.Figure()
@@ -572,10 +572,12 @@ with tab3:
     })
     st.dataframe(weights_df.style.format({"Peso Óptimo": "{:.2%}"}))
     
-    # Mostrar métricas clave
-    col1, col2 = st.columns(2)
+    # Mostrar métricas clave (rendimient anual, acumulado, sesgo, curtosis, var, cvar, sharp sortino, drawdown
+    col1, col2, col3 = st.columns(2)
     col1.metric("Riesgo (Desviación Estándar Anualizada)", f"{min_var_risk:.2%}")
-    col2.metric("Rendimiento Esperado Anualizado", f"{min_var_mean_return:.2%}")
+    col2.metric("Rendimiento Esperado Anualizado", f"{min_var_mean_return:.2%}"
+    col3.metric("Rendimiento acumulado", f"{min_var_cumulative:.2%}"
+    
     
     # Comparar rendimientos acumulados
     fig_cumulative = go.Figure()
