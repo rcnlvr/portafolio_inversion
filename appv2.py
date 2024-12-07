@@ -699,7 +699,7 @@ with tab6:
         omega = np.diag([0.0001, 0.0001])
         
         # Calcular el riesgo ajustado con el modelo de Black-Litterman
-        riesgo = calcular_riesgo_black_litterman(returns[simbolos], P, Q, omega)
+        riesgo = calcular_riesgo_black_litterman(returns, P, Q, omega)
         st.write(f'El riesgo calculado es: {riesgo}')
     else:
         st.write("La variable 'returns' no está definida. Asegúrate de calcular los rendimientos antes de esta sección.")
