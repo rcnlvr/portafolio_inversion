@@ -690,7 +690,8 @@ with tab6:
     st.title('Optimización con el Modelo de Black-Litterman')
     returns
     # Calcular los rendimientos anualizados
-    annualized_returns = returns[simbolos].mean() * 252
+    daily_returns = returns[simbolos]
+    annualized_returns = daily_returns.mean() * 252
     df_annualized_returns = pd.DataFrame(annualized_returns, columns=['Rendimiento Anualizado'])
     P = np.array([[1, -1, 0], [0, 1, -1]])
     Q = np.array([0.01, 0.02])
